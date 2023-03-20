@@ -17,3 +17,26 @@ chrome_driver_path = os.environ["CHROME_DRIVER_PATH"]
 service = Service(chrome_driver_path)
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
+
+
+class InstaFollower:
+    def __init__(self):
+        self.driver = webdriver.Chrome(service=service, options=options)
+
+    def login(self):
+        pass
+
+    def find_followers(self):
+        pass
+
+    def follow(self):
+        pass
+
+
+insta_bot = InstaFollower()
+insta_bot.login()
+insta_bot.find_followers()
+insta_bot.follow()
+
+
+# driver.get("https://www.instagram.com/")
