@@ -45,7 +45,15 @@ class InstaFollower:
 
 
     def find_followers(self):
-    pass
+        self.driver.get(f"https://www.instagram.com/{SIMILAR_ACCOUNT}/")
+        time.sleep(5)
+        nb_followers = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/ul/li[2]/a/div")
+        nb_followers.click()
+        time.sleep(3)
+        pop_up_window = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div")
+        for n in range(10):
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", pop_up_window)
+            time.sleep(3)
 
 
     def follow(self):
