@@ -42,14 +42,13 @@ class InstaFollower:
         sign_in_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[3]/button")
         sign_in_button.click()
         time.sleep(5)
-        print("decline to register to credentials")
-        later_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/div/button")
-        later_button.click()
-        time.sleep(5)
-        print("decline the notifications")
-        notif_later_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]")
-        notif_later_button.click()
-
+        # print("decline to register to credentials")
+        # later_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/div/button")
+        # later_button.click()
+        # time.sleep(5)
+        # print("decline the notifications")
+        # notif_later_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]")
+        # notif_later_button.click()
 
     def find_followers(self):
         self.driver.get(f"https://www.instagram.com/{SIMILAR_ACCOUNT}/")
@@ -65,20 +64,19 @@ class InstaFollower:
             # The method can accept the script as well as a HTML element.
             # The modal in this case, becomes the arguments[0] in the script.
             # Then we're using Javascript to say: "scroll the top of the modal (popup) element by the height of the modal (popup)"
-            print(n)
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", modal)
             time.sleep(3)
 
     def follow(self):
         time.sleep(3)
         print("get all_buttons follow")
-        all_buttons_follow = self.driver.find_elements(By.CSS_SELECTOR, "button._acan _acap _acas _aj1-")
-        print(len(all_buttons_follow))
+        all_buttons_follow = self.driver.find_elements(By.CSS_SELECTOR, "button div._aacl._aaco._aacw._aad6._aade")
+        # print(len(all_buttons_follow))
         print("click on follow button")
         for button in all_buttons_follow[1:10]:
             time.sleep(3)
-            print()
-            button.click()
+            if button.get_attribute("innerHTML") == "Suivre":
+                button.click()
 
 
 insta_bot = InstaFollower()
