@@ -22,12 +22,31 @@ options.add_experimental_option("detach", True)
 class InstaFollower:
     def __init__(self):
         self.driver = webdriver.Chrome(service=service, options=options)
+        self.followers = []
 
     def login(self):
-        pass
+        self.driver.get("https://www.instagram.com/accounts/login/")
+        time.sleep(5)
+        print("accept cookies")
+        cookies_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]")
+        cookies_button.click()
+        time.sleep(5)
+        print("find username area and enter username")
+        username_area = self.driver.find_element(By.NAME, "username")
+        username_area.send_keys(MY_USERNAME)
+        print("find password area and enter password")
+        time.sleep(5)
+        password_area = self.driver.find_element(By.NAME, "password")
+        password_area.send_keys(MY_PASSWORD)
+        print("find 'se connecter' button and click on it")
+        time.sleep(5)
+        sign_in_button = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[3]/button")
+        sign_in_button.click()
+
 
     def find_followers(self):
-        pass
+    pass
+
 
     def follow(self):
         pass
@@ -35,8 +54,5 @@ class InstaFollower:
 
 insta_bot = InstaFollower()
 insta_bot.login()
-insta_bot.find_followers()
-insta_bot.follow()
-
-
-# driver.get("https://www.instagram.com/")
+# insta_bot.find_followers()
+# insta_bot.follow()
